@@ -1,8 +1,16 @@
 <template>
   <button @click="increment">
-    Count is: {{ state.count }}, double is: {{ state.double }}
+    <!-- Count is: {{ state.count }}, double is: {{ state.double }} -->
+    <p>count</p>
   </button>
+  <!-- <button @click="callback1">
+    callback1
+  </button> -->
   {{ Math.random() }}
+  <br />
+  r1: {{ show() }}
+  <br />
+  r2: {{ show2() }}
   <br />
   <!-- :count="state.count" -->
   <child @some-event="state.count % 2 ? callback1() : callback2()" />
@@ -23,6 +31,9 @@ export default {
     callback2: () => {
       console.log("callback2");
     },
+    show: () => {
+      return Math.random();
+    },
   },
   setup() {
     const state = reactive({
@@ -40,9 +51,14 @@ export default {
       }
     }
 
+    function show2() {
+      return Math.random();
+    }
+
     return {
       state,
       increment,
+      show2,
     };
   },
 };
